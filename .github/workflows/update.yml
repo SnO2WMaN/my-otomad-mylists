@@ -13,8 +13,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install utils
-        run: sudo apt-get update && sudo apt-get install -y curl jq moreutils
+      - name: Install httpie
+        run: |
+          python -m pip install --upgrade pip wheel
+          python -m pip install httpie
+      - name: Install jq, moreutils
+        run: sudo apt-get update && sudo apt-get install -y jq moreutils
       - run: sh ./update_mylists.sh
       - name: Commit and push if changed
         run: |
