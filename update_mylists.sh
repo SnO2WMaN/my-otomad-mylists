@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 fetch_nicovideo_mylist() {
   local mylist_id="$1" 
