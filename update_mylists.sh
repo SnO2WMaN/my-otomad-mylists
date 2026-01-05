@@ -2,12 +2,15 @@
 
 fetch_nicovideo_mylist() {
   local mylist_id="$1" 
+  local filename="nicovideo_${mylist_id}.txt"
  
   for page in {1..5}; do
-    curl -s "https://nvapi.nicovideo.jp/v2/mylists/${mylist_id}?pageSize=100&page=${page}&_frontendId=6&_frontendVersion=0" | jq -r ".data.mylist.items.[].watchId" >> "nicovideo_${mylist_id}.txt"
+    curl -s "https://nvapi.nicovideo.jp/v2/mylists/${mylist_id}?pageSize=100&page=${page}&_frontendId=6&_frontendVersion=0" | jq -r ".data.mylist.items.[].watchId" >> "$filename"
   done
 
-  cat "nicovideo_${mylist_id}.txt" | sort | uniq | sponge "nicovideo_${mylist_id}.txt"
+  cat "$filename" | sort | uniq | sponge "$filename"
+
+  echo done nicovideo mylist ${mylist_id} with $(wc -l < "$filename") items.
 }
 
 fetch_nicovideo_mylist 78076337
@@ -16,4 +19,5 @@ fetch_nicovideo_mylist 78982639
 fetch_nicovideo_mylist 79112044
 fetch_nicovideo_mylist 77541320
 
-cat nicovideo_*.txt | sort | uniq > all.txt
+cat nicovideo_*.txt | sort | uniq > nicovideo_all.txt
+echo done nicovideo mylist all with $(wc -l < "nicovideo_all.txt") items.
