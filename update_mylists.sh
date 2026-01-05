@@ -4,13 +4,15 @@ fetch_nicovideo_mylist() {
   local mylist_id="$1" 
   local filename="nicovideo_${mylist_id}.txt"
  
-  for page in {1..5}; do
+  for page in {1..5}; 
+  do
     http GET "https://nvapi.nicovideo.jp/v2/mylists/${mylist_id}" \
       pageSize==1 \
       page==${page} \
       _frontendId==6 \
       _frontendVersion==0 \
-      User-Agent:"Googlebot/2.1"
+      User-Agent:"Googlebot/2.1" \
+    | jq
   done
 
   cat "$filename" | sort | uniq | sponge "$filename"
