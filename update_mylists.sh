@@ -5,7 +5,7 @@ fetch_nicovideo_mylist() {
   local filename="nicovideo_${mylist_id}.txt"
  
   for page in {1..5}; do
-    http -hb "https://nvapi.nicovideo.jp/v2/mylists/${mylist_id}" \
+    http GET "https://nvapi.nicovideo.jp/v2/mylists/${mylist_id}" \
       pageSize==1 \
       page==${page} \
       _frontendId==6 \
