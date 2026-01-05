@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: AnimMouse/setup-yt-dlp@v3
-      - run: ./get-url.sh
+      - run: sh ./get-url.sh
       - name: Commit and push if changed
         run: |
           if git diff --quiet; then
