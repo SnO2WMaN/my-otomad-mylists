@@ -12,7 +12,8 @@ fetch_nicovideo_mylist() {
       _frontendId==6 \
       _frontendVersion==0 \
       User-Agent:"Googlebot/2.1" \
-    | jq -r ".data.mylist.items.[].watchId"
+    | jq -r ".data.mylist.items.[].watchId" \
+    | tee -a "$filename"
   done
 
   cat "$filename" | sort | uniq | sponge "$filename"
