@@ -7,12 +7,12 @@ fetch_nicovideo_mylist() {
   for page in {1..5}; 
   do
     http GET "https://nvapi.nicovideo.jp/v2/mylists/${mylist_id}" \
-      pageSize==1 \
+      pageSize==100 \
       page==${page} \
       _frontendId==6 \
       _frontendVersion==0 \
       User-Agent:"Googlebot/2.1" \
-    | jq -r ".data.mylist.items.[].watchId" >> "$filename"
+    | jq -r ".data.mylist.items.[].watchId"
   done
 
   cat "$filename" | sort | uniq | sponge "$filename"
