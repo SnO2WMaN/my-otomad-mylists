@@ -1,0 +1,4 @@
+.envrc
+/dist/
+/node_modules/
+nicovideo_*.txt

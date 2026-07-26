@@ -1,0 +1,12 @@
+{
+  "name": "my-otomad-mylists",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "update": "bun run update_mylists.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "latest"
+  }
+}
