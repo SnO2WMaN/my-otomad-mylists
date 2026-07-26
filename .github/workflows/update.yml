@@ -5,6 +5,11 @@ on:
   schedule:
     - cron: "0 */3 * * *"
   workflow_dispatch:
+    inputs:
+      skip_post:
+        description: "Publish the lists without posting to Fedibird"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -28,6 +33,7 @@ jobs:
       - run: bun run update
         env:
           FEDIBIRD_ACCESS_TOKEN: ${{ secrets.FEDIBIRD_ACCESS_TOKEN }}
+          SKIP_POST: ${{ inputs.skip_post && '1' || '0' }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

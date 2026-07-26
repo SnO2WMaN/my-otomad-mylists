@@ -9,11 +9,17 @@ const PAGES_BASE_URL = process.env.PAGES_BASE_URL ??
   "https://sno2wman.github.io/my-otomad-mylists";
 
 /**
- * Safety valve: a diff larger than this is almost certainly a mistake (a
- * mylist being rebuilt, the published lists going missing), and posting it
- * would flood the timeline.
+ * Safety valve. A diff this large is not a day's worth of new videos, it means
+ * the published list we are diffing against is wrong (truncated, rebuilt,
+ * belonging to another mylist). Posting is skipped for that mylist rather than
+ * trimmed to the limit: the entries are not trustworthy, so posting the first
+ * few of them is just as wrong as posting all of them. The correct list is
+ * still published, which repairs the baseline for the next run.
  */
-const MAX_POSTS_PER_MYLIST = Number(process.env.MAX_POSTS_PER_MYLIST ?? 50);
+const MAX_POSTS_PER_MYLIST = Number(process.env.MAX_POSTS_PER_MYLIST ?? 100);
+
+/** Publish the lists without posting anything, to re-establish a baseline. */
+const SKIP_POST = process.env.SKIP_POST === "1";
 
 /** `notify` mylists get their newly added videos posted to Fedibird. */
 const MYLISTS = [
@@ -169,16 +175,14 @@ async function postAddedVideos(
     .reverse();
   if (added.length === 0) return;
 
-  const posting = added.slice(0, MAX_POSTS_PER_MYLIST);
-  if (posting.length < added.length) {
+  if (added.length > MAX_POSTS_PER_MYLIST) {
     console.warn(
-      `mylist ${mylistId} has ${added.length} new videos, over the ${MAX_POSTS_PER_MYLIST} cap; not posting: ${
-        added.slice(MAX_POSTS_PER_MYLIST).map((v) => v.watchId).join(" ")
-      }`,
+      `mylist ${mylistId} looks ${added.length} videos ahead of the published list, over the ${MAX_POSTS_PER_MYLIST} limit. The baseline is probably wrong, so nothing is posted; publishing the current list repairs it for the next run.`,
     );
+    return;
   }
 
-  for (const [index, video] of posting.entries()) {
+  for (const [index, video] of added.entries()) {
     if (index > 0) await waitBetweenPosts();
     await postStatus(
       `${video.title}\nhttps://www.nicovideo.jp/watch/${video.watchId}`,
@@ -188,8 +192,10 @@ async function postAddedVideos(
   }
 }
 
-const canPost = isConfigured();
-if (!canPost) {
+const canPost = !SKIP_POST && isConfigured();
+if (SKIP_POST) {
+  console.warn("SKIP_POST is set, publishing the lists without posting.");
+} else if (!canPost) {
   console.warn("FEDIBIRD_ACCESS_TOKEN is not set, not posting anything.");
 }
 
