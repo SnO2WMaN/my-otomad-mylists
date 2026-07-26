@@ -26,6 +26,7 @@ fetch_nicovideo_mylist 78110237
 fetch_nicovideo_mylist 78982639
 fetch_nicovideo_mylist 79112044
 fetch_nicovideo_mylist 77541320
+fetch_nicovideo_mylist 79481663
 
 cat nicovideo_*.txt | sort | uniq > nicovideo_all.txt
 echo done nicovideo mylist all with $(wc -l < "nicovideo_all.txt") items.

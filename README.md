@@ -2,4 +2,5 @@
 - *otomads liked in 2025 (2)*: https://www.nicovideo.jp/my/mylist/78110237
 - *otomads liked in 2025 (3)*: https://www.nicovideo.jp/my/mylist/78982639
 - *otomads liked in 2026 (1)*: https://www.nicovideo.jp/my/mylist/79112044
+- *otomads liked in 2026 (1)*: https://www.nicovideo.jp/my/mylist/79481663
 - *otomad for DJ (1)*: https://www.nicovideo.jp/my/mylist/77541320
