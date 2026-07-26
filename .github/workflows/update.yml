@@ -3,7 +3,7 @@ name: Update mylist URL
 on:
   push:
   schedule:
-    - cron: "0 18 * * *"
+    - cron: "0 */3 * * *"
   workflow_dispatch:
 
 permissions:
@@ -26,6 +26,8 @@ jobs:
           bun-version: latest
       - run: bun install --frozen-lockfile
       - run: bun run update
+        env:
+          FEDIBIRD_ACCESS_TOKEN: ${{ secrets.FEDIBIRD_ACCESS_TOKEN }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
