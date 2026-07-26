@@ -1,6 +1,6 @@
-- *otomads liked in 2025 (1)*: https://www.nicovideo.jp/my/mylist/78076337
-- *otomads liked in 2025 (2)*: https://www.nicovideo.jp/my/mylist/78110237
-- *otomads liked in 2025 (3)*: https://www.nicovideo.jp/my/mylist/78982639
-- *otomads liked in 2026 (1)*: https://www.nicovideo.jp/my/mylist/79112044
-- *otomads liked in 2026 (1)*: https://www.nicovideo.jp/my/mylist/79481663
-- *otomad for DJ (1)*: https://www.nicovideo.jp/my/mylist/77541320
+- [*otomads liked in 2025 (1)*](https://www.nicovideo.jp/my/mylist/78076337): https://sno2wman.github.io/my-otomad-mylists/nicovideo_78076337.txt
+- [*otomads liked in 2025 (2)*](https://www.nicovideo.jp/my/mylist/78110237): https://sno2wman.github.io/my-otomad-mylists/nicovideo_78110237.txt
+- [*otomads liked in 2025 (3)*](https://www.nicovideo.jp/my/mylist/78982639): https://sno2wman.github.io/my-otomad-mylists/nicovideo_78982639.txt
+- [*otomads liked in 2026 (1)*](https://www.nicovideo.jp/my/mylist/79112044): https://sno2wman.github.io/my-otomad-mylists/nicovideo_79112044.txt
+- [*otomads liked in 2026 (2)*](https://www.nicovideo.jp/my/mylist/79481663): https://sno2wman.github.io/my-otomad-mylists/nicovideo_79481663.txt
+- [*otomad for DJ (1)*](https://www.nicovideo.jp/my/mylist/77541320): https://sno2wman.github.io/my-otomad-mylists/nicovideo_77541320.txt
